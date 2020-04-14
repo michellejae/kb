@@ -1,5 +1,6 @@
 const express = require(`express`);
 
+
 const app = express();
 
 const PORT = process.env.PORT || 6060;
@@ -7,6 +8,9 @@ const PORT = process.env.PORT || 6060;
 const cardRoute = require(`./routes/cards`)
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })) 
+
+
 app.use(express.static(`public`));
 
 app.get(`/hello`, (req, res) => {
@@ -18,3 +22,4 @@ app.use(`/kb/cards`, cardRoute)
 app.listen(PORT, (err) => {
     console.log(`Server be runnin' runnin on ${PORT}`)
 })
+

@@ -3,9 +3,19 @@ const router = express.Router();
 
 router
 
-.post(`/:id`, (req, res) => {
-    let {name, deets} = req.body
-    res.send(`Thank you ${name} for the deets as follows ${deets}`)
+.delete(`/id`, (req, res) => {
+    let id = req.params.id
+})
+
+.put(`/:id`, (req, res) => {
+    let id = req.params.id
+    let {name, deets, priority, status, created_by, assigned_to} = req.body
+    res.send(`${name}, ${deets}, ${priority}, ${status}, ${assigned_to}, ${created_by}, ${id}`) 
+})
+
+.post(`/`, (req, res) => {
+    let {name, deets, priority, status, created_by, assigned_to} = req.body
+    res.send(`${name}, ${deets}, ${priority}, ${status}, ${assigned_to}, ${created_by}`)
 })
 
 .get(`/:id`, (req, res) => {
