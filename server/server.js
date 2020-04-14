@@ -1,17 +1,20 @@
-const express = require (`express`);
-
+const express = require(`express`);
 
 const app = express();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 6060;
 
+const cardRoute = require(`./routes/cards`)
+
+app.use(express.json());
 app.use(express.static(`public`));
 
+app.get(`/hello`, (req, res) => {
+    res.send({express: 'Hello from Express B'})
+});
 
-app.get(`/kb/hi`, (req, res) => {
-    res.send({express: `Hello from Express`})
-})
+app.use(`/kb/cards`, cardRoute)
 
 app.listen(PORT, (err) => {
-    console.log(`Server be runnin' runnin' on ${PORT}`)
+    console.log(`Server be runnin' runnin on ${PORT}`)
 })
