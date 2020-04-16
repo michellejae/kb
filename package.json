@@ -7,8 +7,12 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "body-parser": "^1.19.0",
+    "bookshelf": "^1.1.1",
     "express": "^4.17.1",
+    "knex": "^0.20.14",
     "nodemon": "^2.0.3",
+    "path": "^0.12.7",
+    "pg": "^8.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"

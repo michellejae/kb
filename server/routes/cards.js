@@ -4,14 +4,26 @@ const Card = require(`../models/Card`);
 
 router
 
-.delete(`/id`, (req, res) => {
-    let id = req.params.id
+.delete(`/:id`, (req, res) => {
+    return new Card({id: req.params.id})
+    .destroy({require:true})
+    .then(result => {
+      return res.json({message:'deleted id'})
+    })
+    .catch(err => {
+      return res.json({message: err.message})
+    })
 })
 
 .put(`/:id`, (req, res) => {
     let id = req.params.id
     let {name, deets, priority, status, created_by, assigned_to} = req.body
-    res.send(`${name}, ${deets}, ${priority}, ${status}, ${assigned_to}, ${created_by}, ${id}`) 
+    return new Card({id, name, deets, priority, status, created_by, assigned_to})
+    .save()
+    .then(newCard => {
+        newCard = newCard.toJSON()
+        res.json(newCard)
+    })
 })
 
 .post(`/`, (req, res) => {
@@ -22,7 +34,6 @@ router
         newCard = newCard.toJSON()
         res.json(newCard)
     })
-    
 })
 
 .get(`/:id`, (req, res) => {
