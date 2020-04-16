@@ -1,4 +1,5 @@
 
+
 exports.up = function(knex) {
     return knex.schema.createTable('cards', table => {
         table.increments('id').notNullable();
@@ -8,7 +9,7 @@ exports.up = function(knex) {
         table.string('status').notNullable();
         table.string('created_by').notNullable();
         table.string('assigned_to').notNullable();
-        table.date('date_created');
+        table.datetime('date_created', { precision: 6 }).defaultTo(knex.fn.now(6))
       })
   
 };
