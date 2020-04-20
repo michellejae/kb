@@ -1,12 +1,11 @@
 ### ToDo = STARTING OVER
 #### BE & DB
-Set up server
-Set up PSQL
-Set up Knex & Bookshelf to put data in DB
-Set up & define routes
+
 
 On delete route, how do i get bookshelf to confirm the actual id that was deleted vs just confirming it was deleted. 
 
+#### FE & REACT
+literally just lost
 
 
 
