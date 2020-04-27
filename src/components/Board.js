@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Board = () => {
-// const [error, setError] = useState(null);
-// const [isLoaded, setIsLoaded] = useState(false);
+const [error, setError] = useState(null);
+const [isLoading, setIsLoading] = useState(false);
 const [data, setData] = useState([]);
 
 // const KANBAN_DATA = `http://localhost:6060/kb/cards/`;
@@ -11,9 +11,18 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
     const fetchData = async () => {
-        const result = await axios(`http://localhost:6060/kb/cards/`,);
+        setError(false);
+        setIsLoading(true);
 
-        setData(result.data)
+        try {
+            const result = await axios(`http://localhost:6060/kb/cards/`,);
+
+            setData(result.data)
+        } catch (error) {
+            setError(true);
+        }
+
+        setIsLoading(false);
     };
 
     fetchData();
@@ -22,13 +31,28 @@ useEffect(() => {
 
 
 return (
-    <ul>
-        <li>
-        {console.log(data)}
-        </li>
-       
+    <Fragment>
+        {error && <div>Something went wrong ...</div>}
 
-    </ul>
+        {isLoading ? (
+            <div>Loading...</div>
+        ) : (
+
+         <ul>
+            {data.map(card => (
+                <li key={card.id}>
+                    <div>title: {card.name}</div>
+                </li>
+            ))}
+    
+        </ul>
+
+        )}
+
+
+
+    </Fragment>
+
 )
 
 
